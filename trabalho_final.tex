@@ -34,10 +34,107 @@ Capitulo II
     Resultados e discussões
     Considerações finais
 
-Capitulo III
-    Metodologia
-    Resultados e discussões
-    Considerações finais
+Capitulo III: Project Euler - Conjunto de Problemas 3
+    O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Números Amigáveis), 1000-digit Fibonacci Number (Número de Fibonacci de 1000 Dígitos) e Distinct Powers (Potências Distintas).
+    Amicable Numbers:
+        Metodologia
+            Seja soma_divisores(n) a soma de todos os divisores de n (números menores que n que o dividem com resto 0). Sejam a, b inteiros diferentes. Se soma_divisores(a) = b. e soma_divisores(b) = a, dizemos que a e b são números amigáveis. O exercício em questão pergunta qual a soma de todos on números amigáveis de 1 à 10000.
+            O exercício requer conhecimento da definição de divisível, e exigiu que se pensasse numa forma de não repetir os números encontrados.
+        Resultados e discussões
+            # Dado um número inteiro x, a função retorna a soma dos divisores inteiros de x
+            def soma_divisores(x):
+                soma = 0;
+                for i in range(1, x // 2 + 1):
+                    if x % i == 0:
+                        soma = soma + i
+                return soma
+
+            # Dado um número inteiro x, a função retorna a soma dos números amigáveis no intervalo [1, x)
+            def soma_amigaveis(x):
+                soma = 0
+                a = 1
+                while a < x:
+                    b = soma_divisores(a)
+                    # se b > a, para que não se calcule um número amigável que já apareceu
+                    if b > a and soma_divisores(b) == a:
+                        soma = soma + a + b
+                    a = a + 1
+                return soma
+
+            res = soma_amigaveis(10000)
+            print(res)
+            A resposta encontrada nessa solução foi 31626, que é a mesma presente no site que contém as respostas para a lista.
+        Considerações finais
+            A solução do problema é bem direto ao ponto: para cada número de [1, x), calcule a soma de seus divisores, e depois calcule a soma dos divisores desse resultado. Se forem iguais, e b for maior que a, adicione a soma deles na soma acumulada.
+            Quanto a dificuldade de não se repetir números já calculados, basta que nós coloquemos a limitação que b > a, assim garantindo que, se b < a, a + b já foi adicionado a soma quando o número que estavamos testando era a.
+
+    1000-digit Fibonacci Number:
+        Metodologia
+            A sequência de Fibonacci é definida por uma relação de recorrência, onde Fib(n) = Fib(n - 1) + Fib(n - 2), sendo Fib(1) = Fib(2) = 1 os números iniciais.
+            O problema pedia para encontrar qual o índice do primeiro número da sequência de Fibonacci que possui 1000 dígitos.
+            A busca pela solução começou pensando na forma de calcular quantos digitos tem um número, e rapidamente chegamos a conclusão que se dividissemos o número várias vezes por 10 até que sobrasse apenas 0, teriamos o número de casas. Depois, partimos para a solução que, diferentemente do problema anterior, teve que ser alterada por razões de performance.
+        Resultados e discussões
+            A solução para o problema pode ser simplificada a função num_digitos(x), que encontra o valor usando o lag10 de x. Para o problema de resolver Fib(x), encontramos ao todo 3 soluções.
+            A primeira, fib(x), partiu da definição da sequência. Para valores pequenos, a solução resolve o problema, mas o tempo de solução é O(2^n), que torna ela completamente inviável para números como o que possui 1000 digitos.
+            Tento em vista o tempo exponencial da anterior, utilizamos os conhecimentos de recorrência, e encontramos a fórmula fechada presente em fib_fechado(x). Essa função resolve o problema do x-ésimo Fibonacci em tempo linear. A primeira vista ele parece ideal, mas o número de vezes que se eleva os números (da ordem de x) faz com que os valores causem um overflow. Portanto, a velocidade é boa, mas os números cressem rápido demais para a memória disponível para um inteiro.
+            Por fim, encontramos uma solução que resolve em tempo linear com uso constante de memória. A função fib_defiitivo(x) resolve o problema usando três variáveis auxiliares, e o loop realiza O(x) iterações.
+
+            from math import sqrt, floor, log10
+
+            # Dado um inteiro x, calcula o número de digitos
+            def num_digitos(x):
+                return floor(1 + log10(x))
+
+            # Dado inteiro x, returna o x-ésimo valor da sequência de Fibonacci
+            # Solução não ideal para o problemas, pois calcula fib(x) em tempo exponencial
+            def fib(x):
+                if x == 1 or x == 2:
+                    return 1
+                else:
+                    return fib(x - 1) + fib(x - 2) 
+
+            # Dado inteiro x, returna o x-ésimo valor da sequência de Fibonacci
+            # Solução melhor, pois calcula fib(x) em tempo constante (linear se 
+            # considerarmos o número de multiplicações que vão ocorrer para elevar
+            # a e b a x). Foi obtida usando o conceito de fórmula fechada para 
+            # recorrências
+            def fib_fechado(x):
+                raiz5 = sqrt(5)
+                a = (1 + raiz5) / 2
+                b = (1 - raiz5) / 2
+                return (a ** x - b ** x) / raiz5
+
+            # Dado inteiro x, returna o x-ésimo valor da sequência de Fibonacci
+            # Solução definitiva, pois calcula fib(x) em tempo linear, e possui 
+            # um uso de memória constante
+            def fib_definitivo(x):
+                a = 1
+                b = 0
+                while x > 1:
+                    aux = a
+                    a = a + b
+                    b = aux
+                    x = x - 1
+                return a
+
+            # Dado um inteiro x, retorna o índice do número de Fibonacci 
+            # que possui x digitos
+            def x_digit_Fibonacci(x):
+                i = 1
+                while num_digitos(fib_definitivo(i)) < x:
+                    i = i + 1
+                return i
+
+            res = x_digit_Fibonacci(1000)
+            print(res)
+
+            A resposta final encontrada foi que o 4782-ésimo número de Fibonacci é o primeiro a possuir 1000 dígitos.
+        Considerações finais
+            Este exercício exigiu bastante criatividade na hora de encontrar uma forma eficiênte de resolver o problema de Fibonacci, que era o maior gargalo da solução, já que x_digit_Fibonacci(x) e num_digitos(x) possuem tempo de execução da ordem de n e log10 n, respectivamente. 
+    Distinct Powers:
+        Metodologia
+        Resultados e discussões
+        Considerações finais
 
 Capitulo IV
     Metodologia
