@@ -133,8 +133,25 @@ Capitulo III: Project Euler - Conjunto de Problemas 3
             Este exercício exigiu bastante criatividade na hora de encontrar uma forma eficiênte de resolver o problema de Fibonacci, que era o maior gargalo da solução, já que x_digit_Fibonacci(x) e num_digitos(x) possuem tempo de execução da ordem de n e log10 n, respectivamente. 
     Distinct Powers:
         Metodologia
+            O problema consistia em descobrir de quantos elementos diferentes existem numa lista com os resultados das possíveis combinações de a^b, com 2 <= a <= 100 e com 2 <= b <= 100.
         Resultados e discussões
+            # Dado dois inteiros low, high, calcula o número de resultados diferentes 
+            # das possíveis combinações de a ** b (elevado), com a, b pertencentes a [low, high]
+            def num_combinacoes(low, high):
+                lista_combinacoes = []
+                for a in range(low, high + 1):
+                    for b in range(low, high + 1):
+                        aux = a**b
+                        if aux not in lista_combinacoes:
+                            lista_combinacoes.append(aux)
+                
+                return len(lista_combinacoes)
+
+            res = num_combinacoes(2, 100)
+            print(res)
+
         Considerações finais
+            Assim como no primeiro exercício deste conjunto, a solução foi bem direto ao ponto, calculando todas as possíveis combinações de a^b, em tempo O(n^2), onde n é o número de elemento no conjunto [low, high]; depois, colocando na lista apenas os que ainda não estão presentes nela e contando quantos elementos existem nela no final. A solução esta longe de ser a mais eficiente, mas consegue resolver o problema quase instantâneamente em casos relativamente pequenos, como o pedido.
 
 Capitulo IV
     Metodologia
