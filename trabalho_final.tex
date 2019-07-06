@@ -155,10 +155,95 @@ Capitulo III: Project Euler - Conjunto de Problemas 3
         Considerações finais
             Assim como no primeiro exercício deste conjunto, a solução foi bem direto ao ponto, calculando todas as possíveis combinações de a^b, em tempo O(n^2), onde n é o número de elemento no conjunto [low, high]; depois, colocando na lista apenas os que ainda não estão presentes nela e contando quantos elementos existem nela no final. A solução esta longe de ser a mais eficiente, mas consegue resolver o problema quase instantâneamente em casos relativamente pequenos, como o pedido.
 
-Capitulo IV
-    Metodologia
-    Resultados e discussões
-    Considerações finais
+Capitulo IV: Project Euler - Conjunto de Problemas 4
+    O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos Circulares), Goldbach's other conjecture (A outra conjectura de Goldbach) e Consecutive Prime Sum (Soma de Primos Consecutivos).
+
+    Circular Primes:
+        Metodologia
+            Um número é chamado de Primo Circular se as rotações dos seus digitos também são primos. O problema em questão procura saber quantos números primos circulares existem até um milhão.
+        Resultados e discussões
+            A solução começou fazendo uma função que retorna True se um dado número é primo, e False se não. Depois, partimos para fazer uma função que preenche uma lista de tamanho n com True/False dependendo se aquele índice é um número primo ou não.
+            O próximo passo foi descobrir se as rotações com os dígitos de um número são primos ou não. Devido as facilidades de se usar strings em Python, converter o número pra uma string e fazer algumas manipulações de fatiamento tornaram essa tarefa bem simples.
+            Por fim, a resolução final consistem em repetir as verificações para todos os primos obtidos na função lista_primos. Infelizmente, a solução é completamente inviável para números muito grandes, como o 1000000 pedido pelo exercício. Então, buscamos por formas mais eficientes de se separar os números primos, e encontramos o Crivo de Eratóstenes, um algoritmo bastante eficiente para encontrar números primos. Felizmente, esse algoritmo fez com que nossa solução resolve num tempo viável, embora encontramos versões que agilizam ainda mais ao nem considerar primos que contém certos dígitos como 2 e 5.
+            from math import ceil
+
+            # Dado um inteiro x, retorna True se for primo e False caso contrário
+            def primo(x):
+                if x == 2:
+                    return True
+                elif x % 2 == 0 or x < 2:
+                    return False
+                else:
+                    divisivel = False
+                    i = 2
+                    while i <= x/2 and not divisivel:
+                        if x % i == 0:
+                            divisivel = True
+                        i = i + 1
+                return not divisivel
+
+            # Dado um limitante superior x, retorna a lista de tamanho x com
+            # True se o número com aquele índice é primo e False caso contrário
+            def lista_primos(x):
+                lista = []
+                for i in range(0, x):
+                    lista.append(primo(i))
+                return lista
+
+            # Algotimo mais eficiente para gerar uma lista de primos
+            # Dado um inteiro x, retorn uma lista com True se aquele 
+            # índice é de um primo, False caso contrário
+            def sieve_eratosthenes(x):
+                arredonda = lambda x, primo: int(ceil(float(x) / primo))
+
+                primos = [True] * x
+                primos[0] = False
+                primos[1] = False
+                lista_primo = []
+
+                for primo_atual in range(2, x):
+                    if not primos[primo_atual]:
+                        continue
+                    lista_primo.append(primo_atual)
+                    for m in range(2, arredonda(x, primo_atual)):
+                        primos[m * primo_atual] = False
+                return primos
+
+            # Dado um valor primo x, verifica se as rotações dos dígitos 
+            # de x estão contidas numa lista booleana de primos
+            def primo_circular(x, lista_de_primos):
+                x = str(x) # convertendo para string para facilitar rotação
+                for i in range(0, len(x)):
+                    rotacionado = x[i:len(x)] + x[0:i]
+                    if not lista_de_primos[int(rotacionado)]:
+                        return False
+                return True
+
+            # Dado um limitante superior inteiro x, retorna quantos primos
+            # circulares existem em [1, x)
+            def quantos_primos_circulares(x):
+                quantidade = 0
+                primos = sieve_eratosthenes(x)
+                for i in range(0, x):
+                    if primo_circular(i, primos):
+                        quantidade = quantidade + 1
+                return quantidade
+
+            res = quantos_primos_circulares(1000000)
+            print(res)
+
+        Considerações finais
+            Esse problema foi bastante complicado, principalmente no momento de obtenção da solução mais eficiente para encontrar números primos. Acabamso aprendendo como usar funções lamba em Python, e entendemos melhor como fatiar Strings.
+    
+    Goldbach's other conjecture:
+        Metodologia
+        Resultados e discussões
+        Considerações finais
+    
+    Consecutive Prime Sum:
+        Metodologia
+        Resultados e discussões
+        Considerações finais
 
 Capitulo V
     Metodologia
@@ -167,3 +252,4 @@ Capitulo V
 
 Referências
     Discrete Mathematics - Wikipédia, consulta em 30 de junho de 2019
+    Sieve of Eratosthenes - Wikipédia, consulta em 6 de julho de 2019
