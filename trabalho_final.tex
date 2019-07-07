@@ -232,18 +232,108 @@ Capitulo IV: Project Euler - Conjunto de Problemas 4
             res = quantos_primos_circulares(1000000)
             print(res)
 
+            A resposta encontrada foi 55.
+
         Considerações finais
             Esse problema foi bastante complicado, principalmente no momento de obtenção da solução mais eficiente para encontrar números primos. Acabamso aprendendo como usar funções lamba em Python, e entendemos melhor como fatiar Strings.
     
     Goldbach's other conjecture:
         Metodologia
+            A solução do problema se iniciou com a reutilização do Crivo de Eratóstenes do exercício anterior, devido a sua grande eficiência em encontrar número primos. Depois, a solução surgiu da ideia de simplesmente testar o primeiro número que não possuia uma raíz inteira que satisfazia a equação numero = primo + 2 * outro_número^2.
         Resultados e discussões
+            from math import sqrt, ceil
+
+            def sieve_eratosthenes(x):
+                arredonda = lambda x, primo: int(ceil(float(x) / primo))
+
+                primos = [True] * x
+                primos[0] = False
+                primos[1] = False
+                lista_primo = []
+
+                for primo_atual in range(2, x):
+                    if not primos[primo_atual]:
+                        continue
+                    lista_primo.append(primo_atual)
+                    for m in range(2, arredonda(x, primo_atual)):
+                        primos[m * primo_atual] = False
+                return lista_primo
+
+            # Encontra o primeiro número que não obedesce a conjectura
+            # de Goldbach
+            def goldbach_conjecture():
+                lista_primos = sieve_eratosthenes(1000000)
+                num = 1
+                não_encontrou = True
+                while não_encontrou:
+                    num += 2
+                    i = 0
+                    não_encontrou = False
+                    while num >= lista_primos[i]:
+                        a = num - lista_primos[i]
+                        # quando essa condição não é satisfeita, o número não é quadrado perfeito
+                        if sqrt(a/2) == int(sqrt(a/2)):
+                            não_encontrou = True
+                            break
+                        i += 1
+                return num
+
+            res = goldbach_conjecture()
+            print(res)
+            A resposta encontrada foi 5777, que condiz com a lista de respostas.
+
         Considerações finais
+            A solução desse exercício foi bastante direto ao ponto, e exigiu apenas perceber a condição que necessitava que raíz( (número - primo) / 2) tem que ser um quadrado perfeito.
     
     Consecutive Prime Sum:
         Metodologia
+            O problema pedia que, dado um inteiro x, fosse encontrada a maior sequência de números primos consecutivos de forma que a soma seja a maior possível e seja um primo inferior ao dado x.
+            A solução se iniciou reutilizando o Crivo de Eratóstenes, que foi utilizado no primeiro exercício desse conjunto, levemente modificado, de forma a retornar tanto uma lista de primos de 1..x e a lista de primalidade (True para indices primos, False para compostos).
+            A partir daí, partimos para buscar a solução do problema.
         Resultados e discussões
+            from math import ceil
+
+            def sieve_eratosthenes(x):
+                arredonda = lambda x, primo: int(ceil(float(x) / primo))
+
+                primos = [True] * x
+                primos[0] = False
+                primos[1] = False
+                lista_primo = []
+
+                for primo_atual in range(2, x):
+                    if not primos[primo_atual]:
+                        continue
+                    lista_primo.append(primo_atual)
+                    for m in range(2, arredonda(x, primo_atual)):
+                        primos[m * primo_atual] = False
+                return lista_primo, primos
+
+            # Dado um inteiro x, retorna a maior sequência de soma de primos, tal que a soma é inferior a x
+            def maior_soma_primos(x):
+                maior = 0
+                lista_primo, é_primo = sieve_eratosthenes(x)
+                consecutivo = 0
+                for i in range(len(lista_primo)):
+                    soma = lista_primo[i]
+                    consec = 1
+                    for j in range(i + 1, len(lista_primo)):
+                        soma += lista_primo[j]
+                        consec += 1
+                        if soma >= len(é_primo):
+                            break
+                        if é_primo[soma] and consec > consecutivo:
+                            maior = soma
+                            consecutivo = consec
+                return maior
+
+            res = maior_soma_primos(1000000)
+            print(res)
+
+            A resposta encontrada foi 997651.
+
         Considerações finais
+            A solução deste exercício se mostrou bastante complicada. Depois de muito tempo buscando uma forma eficiente de encontrar a maior sequencia que ao mesmo tempo resulta na maior soma, acabamos busca ajuda na internet, para procurar sugestões de algoritmos e até mesmo algumas soluções. Fizemos adaptações para seguir o mesmo estilo de soluções anteriores, e acabamos chegando num algoritmo bastante rápido para a solução do problema.
 
 Capitulo V
     Metodologia
