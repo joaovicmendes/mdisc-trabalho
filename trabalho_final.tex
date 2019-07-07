@@ -44,7 +44,7 @@
 }
 
 \title{Aplicações e Problemas Computacionais em Matemática Discreta}
-\author{Guilherme Locca Salomão e João Victor Mendes Freire }
+\author{Guilherme Locca Salomão, João Victor Mendes Freire \\e Renan Dantas Pasquantonio }
 \date{7 de julho de 2019}
 
 \begin{document}
@@ -76,6 +76,7 @@
     
     \subsection{Materiais e Métodos}
     Os algoritmos foram desenvolvidos em duas plataformas, sendo a primeira deles utilizando a distribuição Linux Manjaro, um editor de texto em conjunto com o terminal. Foram utilizadas as Linguagens Python, na versão 3.7, e a linguagem C. A segunda plataforma utilizou o sistema operacional MacOS, também utilizou um editor de texto (Visual Studio Code) em conjunto com o terminal. Na segunda, as atividades foram resolvidas usando apenas a linguagem Python 3.7.
+\clearpage
 
 \section{Capítulo I: Project Euler - Conjunto 1}
 O primeiro conjunto de problemas contém os exercícios: 100001st Prime Number, Special Pyhtagorian Triplet e Distinct Powers.
@@ -116,6 +117,7 @@ O primeiro conjunto de problemas contém os exercícios: 100001st Prime Number, 
         
         \subsubsection{Considerações finais}
         A solução desse problema foi direta porem achar detalhes que a otimizaçem foi difícil, a única opção de otimização que pude encontrar foi a de pular os números pares pois estes sempre retornavam as sequências mais curtas.
+\clearpage
 
 \section{Capítulo II: Project Euler - Conjunto 2}
 O segundo conjunto de problemas contém os exercícios: Summation of primes, Highly Divisible Triangular Number e Power Digit Sum.
@@ -153,6 +155,7 @@ O segundo conjunto de problemas contém os exercícios: Summation of primes, Hig
         
         \subsubsection{Considerações finais}
         A solução desse problema é simples porém é necessário uma estrutura muito flexível para comportar o número $2^1000$,ja que esse requer cerca de 1000 bits para armazenar, então, ao contrario da minha decisão inicial, foi necessário o uso de python para essa operação.
+\clearpage
 
 \section{Capítulo III: Project Euler - Conjunto 3}
 O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Números Amigáveis), 1000-digit Fibonacci Number (Número de Fibonacci de 1000 Dígitos) e Distinct Powers (Potências Distintas).
@@ -199,6 +202,7 @@ O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Núme
         
         \subsubsection{Considerações finais}
         Assim como no primeiro exercício deste conjunto, a solução foi bem direto ao ponto, calculando todas as possíveis combinações de $a^b$, em tempo $O(n^2)$, onde $n$ é o número de elemento no conjunto [low, high]; depois, colocando na lista apenas os que ainda não estão presentes nela e contando quantos elementos existem nela no final. A solução esta longe de ser a mais eficiente, mas consegue resolver o problema quase instantâneamente em casos relativamente pequenos, como o pedido.
+\clearpage
 
 \section{Capítulo IV: Project Euler - Conjunto 4}
 O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos Circulares), Goldbach's other conjecture (A outra conjectura de Goldbach) e Consecutive Prime Sum (Soma de Primos Consecutivos).
@@ -244,6 +248,7 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
         \subsubsection{Considerações finais}
         A solução deste exercício se mostrou bastante complicada. Depois de muito tempo buscando uma forma eficiente de encontrar a maior sequencia que ao mesmo tempo resulta na maior soma, acabamos busca ajuda na internet.\\
         Procurando sugestões de algoritmos e até mesmo algumas soluções, fizemos adaptações para seguir o mesmo estilo de soluções anteriores, e acabamos chegando num algoritmo bastante rápido para a solução do problema.
+\clearpage
 
 \section{Capítulo V: Knight's Tour}
     \subsection{Metodologia}
@@ -271,8 +276,8 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
 
     \subsection{Considerações finais}
     O problema Knight's Tour foi bastante complicado de resolver, principalemente pelo uso de árvores de busca. Tivemos que recorer a internet para buscar uma solução. Encontramos uma bastante simples e elegante, que encapsula todo o problema numa única classe e em 5 métodos. A solução resolve o problema de forma recursiva, o que por um lado facilida partir da definição do problema e o entendimento dela. Por outro lado, ela consome mais recursos por colocar as chamadas na pilha de execução.\\
-    A solução encontrada resolve um tabuleiro 8x8 em 0.0032131s, resolve um 16x16 em 0.0397682s e um 31x31 em 0.0807571s. Infelizmento, ao realizar o salto de 31x31 para 32x32, a solução recursiva não consegue resolver o problema, pois estoura a pilha de recursão (RecursionError: maximum recursion depth exceeded while calling a Python object).
-
+    A solução encontrada resolve um tabuleiro 8x8 em 0.0032131s, resolve um 16x16 em 0.0397682s e um 31x31 em 0.0807571s. Infelizmento, ao realizar o salto de 31x31 para 32x32, a solução recursiva não consegue resolver o problema, pois estoura a pilha de recursão.
+\clearpage
 
 \section{Referências}
     \begin{itemize}
