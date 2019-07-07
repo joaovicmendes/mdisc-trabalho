@@ -1,6 +1,6 @@
 Aplicações e Problemas Computacionais em Matemática Discreta.
-João Victor Mendes Freire e Guilherme Locca Salomão
-5 de julho de 2019
+Guilherme Locca Salomão
+7 de julho de 2019
 
 Introdução
     O que é Matemática Discreta
@@ -24,15 +24,185 @@ Introdução
 
     Materiais e Métodos
 
-Capitulo I
-    Metodologia
-    Resultados e discussões
-    Considerações finais
+Capitulo I: Project Euler - Conjunto de Problemas 1
+    O primeiro conjunto de problemas contém os exercícios: 100001st Prime Number, Special Pyhtagorian Triplet e Distinct Powers.
+    10001st prime number:
+        Metodologia: 
+            Um primo é definido por ter apenas dois divisores, 1 e ele mesmo, nesse sentido, a solução seria uma aplicação direta da definição
 
-Capitulo II
-    Metodologia
-    Resultados e discussões
-    Considerações finais
+        Resultados e discussões:
+            primo_atual = 3
+            primos = [2]
+            eh_primo = 1 #flag que verifica se o numero é primo ou não
+            while( len(primos) != 10001):#loop ocorre enquanto não a lista de numeros primos é diferente a 10001
+                eh_primo = 1
+                primo_atual = primo_atual + 2#Considerando que o unico numero primo par é o numero 2, podemos então pular todos os numero pares e considerar apenas os impares
+                for n in primos:#utilizando todos os primos anteriores
+                    if primo_atual%n == 0:#verificamos se o numero a ser analizado no momento não é divisivel por nenhum deles o que implicara que ele so tem um unico divisor alem de 1
+                        eh_primo = 0	
+                if eh_primo == 1:#passando nos testes o numero é adicionado a lista
+                    primos.append(primo_atual)
+                    
+            print(primos[10000])
+
+            A resposta encontrada foi 104743 como conferido no arquivo de respostas fornecido
+
+        Considerações finais:
+            Este tem uma solução bem direta porém pouco eficiente, certas escolhas como pular a verificação de numeros pares definitivamente reduzem o tempo de execução mas ainda sim não é possivel deixa-lo instataneo
+
+    Special Pyhtagorian Triplet:
+        Metodologia:
+	    Uma tripla pitagorica é quando a soma dos quadrados de dois numeros é igual ao quadrado de um terceiro número, ou seja a²+b²=c².Para resolver esse problema foi usada a logica de que, C tem que ser o complemento da soma de A e B, e então de forma interativa foi testada as possibilidades dessa combinação
+
+        Resultados e discussões:
+            soma = 1000 #esse é o resultado da soma dos 3 numeros
+            solucao = 0
+            for a in range(1,soma+1): #Sera testada cada iteração a partir do caso base de A ser 1 ate A ser 1000 
+                for b in range(a+1,soma+1): #então sera testado o B>A que então consiga satisfazer a solução
+                    c = soma - a - b
+                    if a*a + b*b == c*c:
+                        solucao = a*b*c
+
+            print(solucao)
+            A saida do programa foi 31875000, compativel com a resposta no arquivo fornecido.
+
+        Considerções finais:
+            A solução desse problema foi difícil de se traduzir para codigo poís há varias soluções possiveis porém cada uma tem sua dificuldade de implementação, entretanto, a "ideia" da solução foi facil de se chegar.
+
+    Longest Collatz Sequence:
+        Metodologia:
+            Uma sequencia collatz é uma sequecia iterativa onde considerando a sequencia iniciando em um numero N, se N for par então n=n/2, se N for impar então, N=3N+1, até chegar ao caso base de N=1.Para resolver esse problema foi uma aplicação direta dessa definiçãoe então atualizar qual seria a maior sequencia sempre que uma maior for encontrada
+
+        Resultados e Discussões:
+            start = 1 #começando pelo caso inicial
+            longest_number = 1 #Caso inicial da mais longa
+            longest_steps = 1 #Quantos passos ocorreram na mais longa
+            cur_steps = 0 #contador de passos
+            cur_number = 0 #numero inicial atual
+            while(start < 1000000): #verificando todos os casos ate 1000000
+                cur_steps = 0
+                start = start + 2 #verifica apenas os numeros impares pois esse tem as sequencias mais longas
+                cur_number = start
+                while (cur_number != 1): #loop ocorre enquanto não atingir o caso base
+                    if cur_number%2 == 0:
+                        cur_number = cur_number/2
+                        cur_steps = cur_steps+1
+                    else:
+                        cur_number = (3*cur_number)+1			
+                        cur_steps = cur_steps+1
+                if cur_steps > longest_steps: #atualiza se a quantidade de passos da sequencia atual for maior que a sequencia maior anterior
+                    longest_number = start
+                    longest_steps = cur_steps
+                    
+            print(longest_number)
+
+            O retorno desse algoritmo foi de 837799, igual ao resultado fornecido no arquivo de respostas
+
+        Considerações finais:
+            A solução desse problema foi direta porem achar detalhes que a otimizaçem foi dificil, a unica opção de otimização que pude encontrar foi a de pular os numeros pares pois estes sempre retornavam as sequencias mais curtas
+
+Capitulo II: Project Euler - Conjunto de Problemas 2
+    O segundo conjunto de problemas contém os exercícios: Summation of primes, Highly Divisible Triangular Number e Power Digit Sum.
+    Summation of primes:
+        Metodologia: 
+            A solução desse exercicio é direta e simples, achar todos os primos e então soma-los.Foi utilizado o Crivo de Eratóstenes para de forma mais eficiente encontrar todos os número primos até dois milhões e então somalos.
+
+        Resultados e discussões:
+            def achaPrimos(limite): #Função que ira procurar todos os primos menores que um certo limite
+                primos=[True for n in range(limite+1) ] #cria uma lista com n=limite elementos e os atribui o valor logico True
+                crivo=2 #cria uma chave do primeiro número primo
+                saida = [] #lista de saida
+                while  crivo*crivo <= limite: #enquanto o quadrado da cahve for menor que o limite, o loop ocorre
+                    if(primos[crivo]==True): #verifica se a chave é um primo
+                        for i in range(crivo*2,limite+1,crivo): #procura todos os números multiplos da chave
+                            primos[i]=False #os transforma em falso, ou seja, não primos
+                    crivo += 1 #aumenta a chave 
+                for i in range(2,limite): #Traduz o indice dos elemento primos para uma lista de elementos
+                    if primos[i]==True:
+                        saida.append(i)
+                return saida
+                        
+            primos = achaPrimos(2000000)
+            soma = 0
+            for i in primos:#realiza a soma de todos os elementos
+                soma += i
+            print(soma)
+            A saida do programa foi 142913828922 como no arquivo de respostas fornecido
+
+        Conclusões finais:  
+            Para realizar esse programa, era necessário um algortimo para achar número primos mais eficiente que a checagem pela definição, portanto a escolha do crivo, além disso foi mais incentivado o uso de tal algoritmo por temos um valor limite.
+
+    Highly Divisible Triangular Number:
+        Metodologia:
+            Um número triangular na posição N é a soma de todos os naturais menores que N, pensando nisso, foi necessário criar uma forma para encontrar o número triangular de posição N, e então criar uma forma de testar seus divisores.
+
+        Resultados e discussões:
+
+            #include<stdlib.h>
+            #include<stdio.h>
+
+            int achaNumeroTriangular(int pos, int num_anterior);//Função que encontra o número de posição N utilizando o numero da posição N-1
+            int achaQtdDivisores(int num);//Função que acha o numero de divisores de um número
+
+
+            int main(){
+                int divisores=0;//contador de divisores
+                int pos_atual = 0;//posição atual a ser considerada
+                int num_atual=0;//Numero triangular da posição atual
+                while (divisores <500)// Realiza a operação ate o contador de divisores atinga 500 ou mais
+                {   
+                
+                num_atual = achaNumeroTriangular(pos_atual,num_atual);
+                divisores = achaQtdDivisores(num_atual);
+                
+                pos_atual++;
+                }
+                printf("\n resultado: %d\n",num_atual);    
+            }
+
+            int achaNumeroTriangular(int pos, int num_anterior){
+                return pos+num_anterior;
+            }
+
+            int achaQtdDivisores(int num){
+                int cont=0;
+                for(int i=1;i<=num;i++){
+                if(num%i==0){//verifica se o resto da divisão é zero o que o caracteriza como divisor
+                    cont++;
+                }
+                }
+                return cont;
+            }
+
+            O retorno desse algoritmo foi de 76576500 correspondendo com a resposta fornecida
+
+        Considerações finais:
+            A soluçao desse problema era bem direta e facil de se implementar, o que tornou viavel usar a linguagem C para isso pois ela poderia realizar em um menor tempo as operações em comparação a python. Além disso outra otimização foi o uso do numero anterior para calcular o numero da posição atual pois assim se tornava um operção simples o que acelerava o processo.
+
+    Power Digit Sum:
+        Metodologia
+            O objetivo era encontrar a soma de todos os digitos de 2^1000, portanto, uma maneira simples era dividir o numero por potencias de 10, somar o resto da divisão a soma dos digitos, e então subtrair esse resto do numero inicial, e então aumentar a potencia de 10. 
+
+
+        Resultados e discussões
+            x = 2**1000#numero a ser usado
+            div = 10#potencia de 10 inicial
+            aux = 0
+            aux2 = 1
+            soma = 0#soma final dos digitos
+            while(x>0):#realiza o loop até que o numero inicial seja 0
+
+                aux = x%div#armazena o digito a ser recebido nessa iteração
+                soma = soma+ (aux/aux2)#soma o digito a soma total, é usado um auxiliar para garantir que o numero seja unitário 
+                x = x - aux#remove o resto do número
+                aux2 =div# atualiza as potencias para poder continuar a operação
+                div = div*10
+
+            print(soma)
+            O resultado desse algoritmo foi 1366 igual ao resultado fornecido no arquivo de respostas
+
+        Considerações finais
+            A solução desse problema é simples porém é necessário uma estrutura muito flexível para comportar o número 2^1000,ja que esse requer cerca de 1000 bits para armazenar, então, ao contrario da minha decisão inicial, foi necessário o uso de python para essa operação.
 
 Capitulo III: Project Euler - Conjunto de Problemas 3
     O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Números Amigáveis), 1000-digit Fibonacci Number (Número de Fibonacci de 1000 Dígitos) e Distinct Powers (Potências Distintas).
