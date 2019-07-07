@@ -71,8 +71,8 @@
     % detalhar e refinar mais essa parte
     
     \subsection{Organização do Documento}
-    O documento foi estruturado da seguinte forma: em cada capítulo, temos um conjunto de exercícios computacionais propostos pelo Professor. Para cada exercício, temos uma secção que introduz o problema e descreve o processo de resolução.
-    Depois, temos uma secção com os códigos de resolução. E, por fim, temos uma secção de considerações finais, na qual explicamos eventuais dificuldades e algumas análises de tempo e espaço dos algoritmos.
+    O documento foi estruturado da seguinte forma: em cada capítulo, temos um conjunto de exercícios computacionais propostos pelo Professor. Para cada exercício, temos uma seção que introduz o problema e descreve o processo de resolução.
+    Depois, temos uma seção com os códigos de resolução. E, por fim, temos uma de considerações finais, na qual explicamos eventuais dificuldades e algumas análises de tempo e espaço dos algoritmos.
     
     \subsection{Materiais e Métodos}
     Os algoritmos foram desenvolvidos em duas plataformas, sendo a primeira deles utilizando a distribuição Linux Manjaro, um editor de texto em conjunto com o terminal. Foram utilizadas as Linguagens Python, na versão 3.7, e a linguagem C. A segunda plataforma utilizou o sistema operacional MacOS, também utilizou um editor de texto (Visual Studio Code) em conjunto com o terminal. Na segunda, as atividades foram resolvidas usando apenas a linguagem Python 3.7.
@@ -245,13 +245,41 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
         A solução deste exercício se mostrou bastante complicada. Depois de muito tempo buscando uma forma eficiente de encontrar a maior sequencia que ao mesmo tempo resulta na maior soma, acabamos busca ajuda na internet.
         Procurando sugestões de algoritmos e até mesmo algumas soluções, fizemos adaptações para seguir o mesmo estilo de soluções anteriores, e acabamos chegando num algoritmo bastante rápido para a solução do problema.
 
-\section{Capítulo V}
+\section{Capítulo V: Knight's Tour}
+    \subsection{Metodologia}
+    O problema do Passeio do Cavalo, ou Knight's Tour, consiste em, dado um tabuleiro e uma posição inicial de um cavalo, fazer com que se visite todas as outras casas, sem repetição. Deve-se respeitar as regras de movimentação do xadrez.
+    A regra de Warnsdorff é uma heurisica bastante utilizada na resolução do problema. Ela diz:
+        \begin{itemize}
+            \item Inicie de uma posição qualquer do tabuleiro
+            \item Sempre mova para um quadrado adjacente não visitado, isto é que o cavalo pode visitar, que tenha grau mínimo, ou seja, que tenha o menor número de vizinhos não visitados.
+        \end{itemize}
+    Para resolução desse problema, foi sugerido o seguinte algoritmo:
+        \begin{enumerate}
+            \item Seja P uma posição inicial do tabuleiro
+            \item Marque P com o movimento número 1
+            \item Para cada número de movimento de 2 até o número de posições do tabuleiro faça:
+                \begin{enumerate}
+                    \item Seja S o conjunto das posições acessíveis de P
+                    \item Seja P a posição em S com mínima acessibilidade
+                    \item Marque a posição P com o número do movimento atual
+                \end{enumerate}
+            \item Retorne a matriz marcada em que cada posição terá o número do movimento
+        \end{enumerate}
+
+    \subsection{Resultados e discussões}
+\lstinputlisting[language=Python]{ex_kt.py} % código
+
+    \subsection{Considerações finais}
+    O problema Knight's Tour foi bastante complicado de resolver, principalemente pelo uso de árvores de busca. Tivemos que recorer a internet para buscar uma solução. Encontramos uma bastante simples e elegante, que encapsula todo o problema numa única classe e em 5 métodos. A solução resolve o problema de forma recursiva, o que por um lado facilida partir da definição do problema e o entendimento dela. Por outro lado, ela consome mais recursos por colocar as chamadas na pilha de execução.
+    A solução encontrada resolve um tabuleiro 8x8 em 0.0032131s, resolve um 16x16 em 0.0397682s e um 31x31 em 0.0807571s. Infelizmento, ao realizar o salto de 31x31 para 32x32, a solução recursiva não consegue resolver o problema, pois estoura a pilha de recursão (RecursionError: maximum recursion depth exceeded while calling a Python object).
+
 
 \section{Referências}
     \begin{itemize}
       \item \href{https://en.wikipedia.org/wiki/Discrete_mathematics}{Discrete Mathematics - Wikipédia, consulta em 30 de junho de 2019}
       \item \href{https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes}{Sieve of Eratosthenes - Wikipédia, consulta em 6 de julho de 2019}
-      \item \href{https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt}{Lista de soluções (cedida pelo professor), última consulta em 7 de julho}
+      \item \href{https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt}{Lista de soluções (cedida pelo professor), última consulta em 7 de julho de 2019}
+      \item \href{http://blog.justsophie.com/algorithm-for-knights-tour-in-python/}{Site com a solução do Passeio do Cavalo, consulta em 7 de julho de 2019}
     \end{itemize}
 
 \end{document}
