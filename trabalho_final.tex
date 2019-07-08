@@ -55,14 +55,14 @@
     \subsection{O que é Matemática Discreta}
     
     A Matemática Discreta é um ramo da matemática que não possui uma definição formal precisa e exata. Ela é descrita como o ramo que estuda conjuntos contáveis, ou seja, conjuntos finitos ou que possuem a mesma cardinalidade do conjunto dos naturais.\\
-    Ao se observar o conjunto dos números reais, por exemplo, podemos escolher dois números arbitrários, como 0 e 1. Entre esses dois números, existe uma infinidade de outros números, e, portando, não podemos considerar 0 o “primeiro" e 1 o “segundo”. O 0,5 existe entre eles. Bem como o 0,05, e o 0,005. Logo, não conseguimos mapear a cardinalidade dos números naturais para cada número real.\\
+    Ao se observar o conjunto dos números reais, por exemplo, podemos escolher dois números arbitrários, como 0 e 1. Entre esses dois números, existe uma infinidade de outros números, e, portanto, não podemos considerar 0 o “primeiro" e 1 o “segundo”. O 0,5 existe entre eles. Bem como o 0,05, e o 0,005. Logo, não conseguimos mapear a cardinalidade dos números naturais para cada número real.\\
     O conjunto dos inteiros é infinito assim como os reais, mas, diferentemente deles, é enumerável. Portanto, podemos mapear a cardinalidade dos naturais neles. \\
     Assim sendo, embora contenha infinitos elementos, o conjunto dos inteiros é uma estrutura discreta, de interesse da matemática discreta, ao contrario dos reais, que é uma estrutura contínua.
     
     
     \subsection{Por que é importante?}
-    Dispositivos digitais estão presentes em inúmeros contextos no mundo contemporâneo. Smartphones, computadores pessoais, servidores, semáforos, sistemas de um banco, os sistemas de um veículo e milhares de outros sistemas são digitais. Devido a isto, são construídos por circuitos lógicos, que funcionam baseados em estruturas discretas.\\
-    A comunicação entre bancos, governos e até mesmo entre pessoas é segura quando se utiliza Criptografia para proteger os dados. A matemática discreta é bastanten importante em se tratando de desenvolver novos e melhores algortimos para criptografar e descriptografar dados privados.\\
+    Dispositivos digitais estão presentes em inúmeros contextos no mundo contemporâneo. Smartphones, computadores pessoais, servidores, semáforos, sistemas de banco, os sistemas de um veículo e milhares de outros sistemas são digitais. Devido a isto, são construídos por circuitos lógicos, que funcionam baseados em estruturas discretas.\\
+    A comunicação entre bancos, governos e até mesmo entre pessoas é segura quando se utiliza Criptografia para proteger os dados. A matemática discreta é bastante importante quando se trata de desenvolver novos e melhores algortimos para criptografar e descriptografar dados privados.\\
     Além desse aspecto computacional, a matemática discreta oferece as ferramentas para que, por exemplo, um carteiro descubra qual a rota de entregas mais eficiênte.\\
     Estes são apenas dois exemplos de impactos da matemática discreta na vida de uma pessoa comum. Existem inúmeros outros, e ainda mais para aqueles interessados em aprofundar seus conhecimentos na área de Ciência da Computação.\\
     
@@ -72,10 +72,10 @@
     
     \subsection{Organização do Documento}
     O documento foi estruturado da seguinte forma: em cada capítulo, temos um conjunto de exercícios computacionais propostos pelo Professor. Para cada exercício, temos uma seção que introduz o problema e descreve o processo de resolução.\\
-    Depois, temos uma seção com os códigos de resolução. E, por fim, temos uma de considerações finais, na qual explicamos eventuais dificuldades e algumas análises de tempo e espaço dos algoritmos.\\
+    Em seguida, temos uma seção com os códigos de resolução. E, por fim, as considerações finais, onde explicamos eventuais dificuldades e algumas análises de tempo e espaço dos algoritmos.\\
     
     \subsection{Materiais e Métodos}
-    Os algoritmos foram desenvolvidos em duas plataformas, sendo a primeira deles utilizando a distribuição Linux Manjaro, um editor de texto em conjunto com o terminal. Foram utilizadas as Linguagens Python, na versão 3.7, e a linguagem C. A segunda plataforma utilizou o sistema operacional MacOS, também utilizou um editor de texto (Visual Studio Code) em conjunto com o terminal. Na segunda, as atividades foram resolvidas usando apenas a linguagem Python 3.7.
+    Os algoritmos foram desenvolvidos em três plataformas, sendo as duas primeiras utilizando a distribuição Linux Manjaro, e um editor de texto em conjunto com o terminal. Foram utilizadas as Linguagens Python, na versão 3.7, e a linguagem C. A terceira plataforma utilizou o sistema operacional MacOS, também utilizou um editor de texto (Visual Studio Code) em conjunto com o terminal. Na terceira, as atividades foram resolvidas usando apenas a linguagem Python 3.7.
 \clearpage
 
 \section{Capítulo I: Project Euler - Conjunto 1}
@@ -96,7 +96,7 @@ O primeiro conjunto de problemas contém os exercícios: 100001st Prime Number, 
     \subsection{Special Pyhtagorian Triplet}
         
         \subsubsection{Metodologia}
-        Uma tripla pitagorica é quando a soma dos quadrados de dois numeros é igual ao quadrado de um terceiro número, ou seja $a^2+b^2=c^2$. Para resolver esse problema foi usada a logica de que, C tem que ser o complemento da soma de A e B, e então de forma interativa foi testada as possibilidades dessa combinação.
+        Uma tripla pitagorica é quando a soma dos quadrados de dois numeros é igual ao quadrado de um terceiro número, ou seja $a^2+b^2=c^2$. Para resolver esse problema foi usada a logica de que, C tem que ser o complemento da soma de A e B, e então de forma iterativa foi testada as possibilidades dessa combinação.
         
         \subsubsection{Resultados e discussões}
 \lstinputlisting[language=Python]{ex2.py} % código
@@ -109,14 +109,14 @@ O primeiro conjunto de problemas contém os exercícios: 100001st Prime Number, 
     \subsection{Longest Collatz Sequence}
         
         \subsubsection{Metodologia}
-        Uma sequencia collatz é uma sequêcia iterativa onde considerando a sequêcia iniciando em um numero $n$, se $n$ for par então $n = \frac{n}{2}$, se $n$ for impar então, $n = 3n + 1$, até chegar ao caso base de $N = 1$. Para resolver esse problema foi uma aplicação direta dessa definição e então atualizar qual seria a maior sequência sempre que uma maior for encontrada.
+        Uma sequencia collatz é uma sequêcia iterativa onde considerando a sequência iniciando em um numero $n$, se $n$ for par então $n = \frac{n}{2}$, se $n$ for impar então, $n = 3n + 1$, até chegar ao caso base de $N = 1$. Para resolver esse problema foi uma aplicação direta dessa definição e então atualizar qual seria a maior sequência sempre que uma maior for encontrada.
         
         \subsubsection{Resultados e Discussões}
 \lstinputlisting[language=Python]{ex3.py} % código
         O retorno desse algoritmo foi de 837799, igual ao resultado fornecido no arquivo de respostas
         
         \subsubsection{Considerações finais}
-        A solução desse problema foi direta porem achar detalhes que a otimizaçem foi difícil, a única opção de otimização que pude encontrar foi a de pular os números pares pois estes sempre retornavam as sequências mais curtas.
+        A solução desse problema foi direta porem achar detalhes que a otimizassem foi difícil, a única opção de otimização que pude encontrar foi a de pular os números pares pois estes sempre retornavam as sequências mais curtas.
 \clearpage
 
 \section{Capítulo II: Project Euler - Conjunto 2}
@@ -124,7 +124,7 @@ O segundo conjunto de problemas contém os exercícios: Summation of primes, Hig
     \subsection{Summation of primes}
         
         \subsubsection{Metodologia} 
-        A solução desse exercicio é direta e simples, achar todos os primos e então soma-los. Foi utilizado o Crivo de Eratóstenes para de forma mais eficiente encontrar todos os número primos até dois milhões e então somalos.
+        A solução desse exercicio é direta e simples, achar todos os primos e então soma-los. Foi utilizado o Crivo de Eratóstenes para de forma mais eficiente encontrar todos os número primos até dois milhões e então somá-los.
         
         \subsubsection{Resultados e discussões}
 \lstinputlisting[language=Python]{ex4.py} % código
@@ -154,7 +154,7 @@ O segundo conjunto de problemas contém os exercícios: Summation of primes, Hig
         O resultado desse algoritmo foi 1366 igual ao resultado fornecido no arquivo de respostas
         
         \subsubsection{Considerações finais}
-        A solução desse problema é simples porém é necessário uma estrutura muito flexível para comportar o número $2^1000$,ja que esse requer cerca de 1000 bits para armazenar, então, ao contrario da minha decisão inicial, foi necessário o uso de python para essa operação.
+        A solução desse problema é simples porém é necessário uma estrutura muito flexível para comportar o número $2^{1000}$,ja que esse requer cerca de 1000 bits para armazenar, então, ao contrario da decisão inicial, foi necessário o uso de python para essa operação.
 \clearpage
 
 \section{Capítulo III: Project Euler - Conjunto 3}
@@ -170,7 +170,7 @@ O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Núme
         A resposta encontrada nessa solução foi 31626, que é a mesma presente no site que contém as respostas para a lista.
         
         \subsubsection{Considerações finais}
-        A solução do problema é bem direto ao ponto: para cada número de $[1, x)$, calcule a soma de seus divisores, e depois calcule a soma dos divisores desse resultado. Se forem iguais, e $b$ for maior que $a$, adicione a soma deles na soma acumulada.\\
+        A solução do problema é bastante objetiva: para cada número de $[1, x)$, calcule a soma de seus divisores, e depois calcule a soma dos divisores desse resultado. Se forem iguais, e $b$ for maior que $a$, adicione a soma deles na soma acumulada.\\
         Quanto a dificuldade de não se repetir números já calculados, basta que nós coloquemos a limitação que $b > a$, assim garantindo que, se $b < a$, $a + b$ já foi adicionado a soma quando o número que estavamos testando era $a$.
 
     \subsection{1000-digit Fibonacci Number}
@@ -178,7 +178,7 @@ O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Núme
         \subsubsection{Metodologia}
         A sequência de Fibonacci é definida por uma relação de recorrência, onde $Fib(n) = Fib(n - 1) + Fib(n - 2)$, sendo $Fib(1) = Fib(2) = 1$ os números iniciais.
         O problema pedia para encontrar qual o índice do primeiro número da sequência de Fibonacci que possui 1000 dígitos.\\
-        A busca pela solução começou pensando na forma de calcular quantos digitos tem um número, e rapidamente chegamos a conclusão que se dividissemos o número várias vezes por 10 até que sobrasse apenas 0, teriamos o número de casas. Depois, partimos para a solução que, diferentemente do problema anterior, teve que ser alterada por razões de performance.
+        A busca pela solução começou pensando na forma de calcular quantos digitos tem um número, e rapidamente chegamos a conclusão que se dividissemos o número várias vezes por 10 até que sobrasse apenas 0, teriamos o número de casas. Depois, partimos para a solução que, diferentemente do problema anterior, teve que ser alterada por razões de desempenho.
         
         \subsubsection{Resultados e discussões}
         A solução para o problema pode ser simplificada a função $num\_digitos(x)$, que encontra o valor usando o $log10$ de $x$. Para o problema de resolver $Fib(x)$, encontramos ao todo 3 soluções.\\
@@ -189,7 +189,7 @@ O terceiro conjunto de problemas contém os exercícios: Amicable Numbers (Núme
         A resposta final encontrada foi que o 4782-ésimo número de Fibonacci é o primeiro a possuir 1000 dígitos.
         
         \subsubsection{Considerações finais}
-        Este exercício exigiu bastante criatividade na hora de encontrar uma forma eficiênte de resolver o problema de Fibonacci, que era o maior gargalo da solução, já que $x\_digit\_Fibonacci(x)$ e $num\_digitos(x)$ possuem tempo de execução da ordem de $n$ e $log10 n$, respectivamente.
+        Este exercício exigiu bastante criatividade na hora de encontrar uma forma eficiênte de resolver o problema de Fibonacci, que era o maior gargalo da solução, já que $x\_digit\_Fibonacci(x)$ e $num\_digitos(x)$ possuem tempo de execução da ordem de $n$ e $log_{10} n$, respectivamente.
         
     \subsection{Distinct Powers}
         
@@ -214,7 +214,7 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
         
         \subsubsection{Resultados e discussões}
         A solução começou fazendo uma função que retorna True se um dado número é primo, e False se não. Depois, partimos para fazer uma função que preenche uma lista de tamanho n com True/False dependendo se aquele índice é um número primo ou não.\\
-        O próximo passo foi descobrir se as rotações com os dígitos de um número são primos ou não. Devido as facilidades de se usar strings em Python, converter o número pra uma string e fazer algumas manipulações de fatiamento tornaram essa tarefa bem simples.\\
+        O próximo passo foi descobrir se as rotações com os dígitos de um número são primos ou não. Devido as facilidades de se usar strings em Python, converter o número pra uma string e fazer manipulações de fatiamento tornaram essa tarefa bem simples.\\
         Por fim, a resolução final consistem em repetir as verificações para todos os primos obtidos na função $lista\_primos$. Infelizmente, a solução é completamente inviável para números muito grandes, como o 1000000 pedido pelo exercício. Então, buscamos por formas mais eficientes de se separar os números primos, e encontramos o Crivo de Eratóstenes, um algoritmo bastante eficiente para encontrar números primos. Felizmente, esse algoritmo fez com que nossa solução resolve num tempo viável, embora encontramos versões que agilizam ainda mais ao nem considerar primos que contém certos dígitos como 2 e 5.
 \lstinputlisting[language=Python]{ex35.py} % código
         A resposta encontrada foi 55.
@@ -232,7 +232,7 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
         A resposta encontrada foi 5777, que condiz com a lista de respostas.
         
         \subsubsection{Considerações finais}
-        A solução desse exercício foi bastante direto ao ponto, e exigiu apenas perceber a condição que necessitava que $\sqrt{\frac{(numero - primo)}{2})}$ tem que ser um quadrado perfeito.
+        A solução desse exercício foi bastante direto ao ponto, e exigiu apenas perceber a condição que necessitava que $\sqrt{\frac{(numero - primo)}{2}}$ tem que ser um quadrado perfeito.
         
     \subsection{Consecutive Prime Sum}
         
@@ -256,7 +256,7 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
     A regra de Warnsdorff é uma heurisica bastante utilizada na resolução do problema. Ela diz:
         \begin{itemize}
             \item Inicie de uma posição qualquer do tabuleiro
-            \item Sempre mova para um quadrado adjacente não visitado, isto é que o cavalo pode visitar, que tenha grau mínimo, ou seja, que tenha o menor número de vizinhos não visitados.
+            \item Sempre mova para um quadrado adjacente não visitado, isto é, que o cavalo pode visitar, que tenha grau mínimo, ou seja, que tenha o menor número de vizinhos não visitados.
         \end{itemize}
     Para resolução desse problema, foi sugerido o seguinte algoritmo:
         \begin{enumerate}
@@ -275,8 +275,8 @@ O quarto conjunto de problemas contém os exercícios: Circular Primes (Primos C
 \lstinputlisting[language=Python]{ex_kt.py} % código
 
     \subsection{Considerações finais}
-    O problema Knight's Tour foi bastante complicado de resolver, principalemente pelo uso de árvores de busca. Tivemos que recorer a internet para buscar uma solução. Encontramos uma bastante simples e elegante, que encapsula todo o problema numa única classe e em 5 métodos. A solução resolve o problema de forma recursiva, o que por um lado facilida partir da definição do problema e o entendimento dela. Por outro lado, ela consome mais recursos por colocar as chamadas na pilha de execução.\\
-    A solução encontrada resolve um tabuleiro 8x8 em 0.0032131s, resolve um 16x16 em 0.0397682s e um 31x31 em 0.0807571s. Infelizmento, ao realizar o salto de 31x31 para 32x32, a solução recursiva não consegue resolver o problema, pois estoura a pilha de recursão.
+    O problema Knight's Tour foi bastante complicado de resolver, principalemente pelo uso de árvores de busca. Tivemos que recorer a internet para buscar uma solução. Encontramos uma bastante simples e elegante, que encapsula todo o problema numa única classe e em 5 métodos. A solução resolve o problema de forma recursiva, o que por um lado facilita partir da definição do problema e o entendimento dela. Por outro lado, ela consome mais recursos por colocar as chamadas na pilha de execução.\\
+    A solução encontrada resolve um tabuleiro 8x8 em 0.0032131s, resolve um 16x16 em 0.0397682s e um 31x31 em 0.0807571s. Infelizmente, ao realizar o salto de 31x31 para 32x32, a solução recursiva não consegue resolver o problema, pois estoura a pilha de recursão.
 \clearpage
 
 \section{Referências}
