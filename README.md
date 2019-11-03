@@ -1,2 +1,2 @@
-# Aplicações e Problemas Computacionais em Matemática Discreta 
-Exercícios Computacionais do curso 1001500 - Matemática Discreta, Turma B - UFSCar 2019/1
+# Matemática Discreta (1001500)
+Trabalho da disciplina Matemática Discreta (1001500) - UFSCar 2019/1
